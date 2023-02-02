@@ -1,2 +1,6 @@
-# EonaCat-ChatGPT-Sidebar
-EonaCat ChatGPT Sidebar
+# EonaCat.ChatGPT.Sidebar
+
+Windows Sidebar for ChatGPT
+
+###### ScreenShots:
+
