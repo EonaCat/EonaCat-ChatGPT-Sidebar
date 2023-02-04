@@ -15,38 +15,54 @@ See the License for the specific language governing permissions and
 limitations under the License
 
 -->
-    <Window
+<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf" x:Class="EonaCat.ChatGPT.Sidebar.MainWindow"
-        Title="EonaCat ChatGPT Sidebar" Height="1000" Width="1000" Topmost="True" WindowStyle="None" Background="#01000000" AllowsTransparency="True" MouseMove="Window_MouseMove" Icon="/EonaCat.png">
+        Title="EonaCat ChatGPT Sidebar" Width="1000" Height="1000" Topmost="True" WindowStyle="None" Background="#01000000" AllowsTransparency="True" MouseMove="Window_MouseMove" Icon="/EonaCat.png">
     <Window.Resources>
         <!-- This style is used for buttons, to remove the WPF default 'animated' mouse over effect -->
-            <Style TargetType="Button">
+        <Style TargetType="Button">
             <Setter Property="OverridesDefaultStyle" Value="True" />
             <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="Button">
-                            <Border Name="border"
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border"
                         BorderThickness="1"
                         Padding="4,2"
                         BorderBrush="DarkGray"
                         CornerRadius="8"
                         Background="{TemplateBinding Background}">
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                            </Border>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter TargetName="border" Property="BorderBrush" Value="Black" />
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="Black" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
-    <DockPanel Margin="-2">
-        <Wpf:WebView2 Name="webView" Loaded="webView_Loaded" Source="https://chat.openai.com/" Width="980" MouseMove="Window_MouseMove" />
+    <DockPanel Margin="-2" SnapsToDevicePixels="True">
+        <TabControl x:Name="tabControl" Width="980" HorizontalAlignment="Stretch" FlowDirection="RightToLeft" Background="#DE102D" VerticalAlignment="Stretch" BorderThickness="0" TabStripPlacement="Top">
+            <TabItem Header="ChatGPT" Background="#DE102D">
+                    <Wpf:WebView2 Name="webView" Loaded="webView_Loaded" Source="https://chat.openai.com/" MouseMove="Window_MouseMove">
+                        <Wpf:WebView2.RenderTransform>
+                            <ScaleTransform ScaleX="1" ScaleY="1" />
+                        </Wpf:WebView2.RenderTransform>
+                    </Wpf:WebView2>
+            </TabItem>
+            <TabItem Header="Playground" Background="#DE102D">
+                    <Wpf:WebView2 Name="webView2" Loaded="webView_Loaded" Source="https://platform.openai.com/playground/" MouseMove="Window_MouseMove"
+                                  ZoomFactor="0.9">
+                        <Wpf:WebView2.RenderTransform>
+                            <ScaleTransform ScaleX="1" ScaleY="1" />
+                        </Wpf:WebView2.RenderTransform>
+                    </Wpf:WebView2>
+            </TabItem>
+        </TabControl>
         <DockPanel VerticalAlignment="Center" DockPanel.Dock="Right" Width="20" HorizontalAlignment="Right" MouseMove="Window_MouseMove">
             <Image x:Name="logo" Source="/EonaCat.png" DockPanel.Dock="Top" Width="25" Margin="-8,0,-5,0" MouseLeftButtonUp="logo_MouseLeftButtonUp">
                 <Image.LayoutTransform>

@@ -213,6 +213,9 @@ namespace EonaCat.ChatGPT.Sidebar
 
         private Visibility visible = Sidebar.Visibility.Hidden;
 
+        public double DEFAULT_CHATWINDOW = -10;
+        public double DEFAULT_PLAYGROUNDWINDOW = -10;
+
         private void show_hide_click(object sender, RoutedEventArgs e)
         {
             if (visible == Sidebar.Visibility.Chat)
@@ -226,14 +229,26 @@ namespace EonaCat.ChatGPT.Sidebar
             UpdateVisibility();
         }
 
-        private void UpdateVisibility()
+        private void UpdateVisibility(double windowPosition = 0)
         {
+            if (tabControl.SelectedIndex == 1)
+            {
+                windowPosition = DEFAULT_PLAYGROUNDWINDOW;
+            }
+
             DoubleAnimation leftAnimation = new DoubleAnimation();
             leftAnimation.From = this.Left;
 
             if (visible == Sidebar.Visibility.Chat)
             {
-                leftAnimation.To = -260;
+                if (windowPosition != 0.0)
+                {
+                    leftAnimation.To = windowPosition;
+                }
+                else
+                {
+                    leftAnimation.To = DEFAULT_CHATWINDOW;
+                }
             }
             else if (visible == Sidebar.Visibility.Hidden)
             {
