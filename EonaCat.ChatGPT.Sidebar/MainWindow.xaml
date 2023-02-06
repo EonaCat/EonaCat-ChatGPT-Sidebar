@@ -47,6 +47,13 @@ limitations under the License
     </Window.Resources>
     <DockPanel Margin="-2" SnapsToDevicePixels="True">
         <TabControl x:Name="tabControl" Width="980" HorizontalAlignment="Stretch" FlowDirection="RightToLeft" Background="#DE102D" VerticalAlignment="Stretch" BorderThickness="0" TabStripPlacement="Top">
+            <TabItem Header="EonaCat" Background="#DE102D">
+                <Wpf:WebView2 Name="webView3" Loaded="webView_Loaded" Source="https://EonaCat.com/" MouseMove="Window_MouseMove">
+                    <Wpf:WebView2.RenderTransform>
+                        <ScaleTransform ScaleX="1" ScaleY="1" />
+                    </Wpf:WebView2.RenderTransform>
+                </Wpf:WebView2>
+            </TabItem>
             <TabItem Header="ChatGPT" Background="#DE102D">
                     <Wpf:WebView2 Name="webView" Loaded="webView_Loaded" Source="https://chat.openai.com/" MouseMove="Window_MouseMove">
                         <Wpf:WebView2.RenderTransform>

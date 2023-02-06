@@ -262,6 +262,8 @@ namespace EonaCat.ChatGPT.Sidebar
         private async void webView_Loaded(object sender, RoutedEventArgs e)
         {
             await webView.EnsureCoreWebView2Async();
+            await webView2.EnsureCoreWebView2Async();
+            await webView3.EnsureCoreWebView2Async();
         }
 
         private void credits_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
