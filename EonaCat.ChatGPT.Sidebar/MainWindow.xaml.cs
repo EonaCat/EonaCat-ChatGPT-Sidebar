@@ -285,6 +285,18 @@ namespace EonaCat.ChatGPT.Sidebar
         {
             Process.Start(new ProcessStartInfo("https://EonaCat.com") { UseShellExecute = true });
         }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // Do nothing
+        }
+
+        private void tabControl_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Home || e.Key == Key.End || e.Key == Key.Tab)
+            {
+            }
+        }
     }
 
     public enum Visibility
