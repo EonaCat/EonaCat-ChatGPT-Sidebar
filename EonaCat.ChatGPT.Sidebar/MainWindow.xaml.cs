@@ -16,6 +16,7 @@ limitations under the License
 
 */
 
+using EonaCat.ChatGPT.Sidebar.Helpers;
 using EonaCat.Json;
 using HtmlAgilityPack;
 using Microsoft.Web.WebView2.Core;
@@ -46,9 +47,11 @@ namespace EonaCat.ChatGPT.Sidebar
         public MainWindow()
         {
             InitializeComponent();
-            this.ShowInTaskbar = false;
+            WindowHelper.HideInTabBar(this);
+
             this.WindowStyle = WindowStyle.None;
             this.ResizeMode = ResizeMode.NoResize;
+            this.ShowInTaskbar = false;
 
             double monitorHeight = SystemParameters.PrimaryScreenHeight;
 
@@ -68,7 +71,6 @@ namespace EonaCat.ChatGPT.Sidebar
             UpdateStartupButtonIcon();
             InitializeWebviewAsync();
         }
-
         private async void InitializeWebviewAsync()
         {
             // Wait for the DOMContentLoaded event to fire
